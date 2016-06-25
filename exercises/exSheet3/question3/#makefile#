@@ -1,0 +1,27 @@
+#the following are variables that can be inserted into the code
+CCPFLAGS=-Wall -g -MMD	#MMD creates .d files by searching through .cpp files 
+EXE=stats
+CXX=g++
+OBJ=main.o statistics.o
+
+
+$(EXE):	$(OBJ)
+	$(CXX) $(CPPFLAGS) $(OBJ) -o $(EXE)
+
+%.o: %.cpp		#% is a pattern matcher, each instance of % will be executed independently
+	$(CXX) $(CPPFLAGS) -c $<
+
+-include $(OBJ:.o = .d)  #MMD flags
+#main.o: statistics.h	#this specific prerequisite will combine with the general rule above
+
+.PHONY: clean		#declares clean as a phony file name so it is 
+clean:
+	rm -f $(OBJ) $(EXE) $(OBJ: .o = .d)
+
+#a makefile is a set of rules for compiling a program for use by the\
+ Unix utility make. 
+#the interpretation of this file is that the target\
+ of the compilation is an executable file called stats
+#stats is dependent on the object files main.o and statistics.p that are reference with the variable OBJ
+
+

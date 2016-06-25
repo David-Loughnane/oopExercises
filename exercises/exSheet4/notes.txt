@@ -1,0 +1,50 @@
+4.4 Character input and output
+
+we can extract or read single characters from an input file using the
+member function get() which takes a single argument of type char. 
+in_stream.get(ch);
+the variable ch is assinged the value of the next char from in_stream,
+and the ifstream in_stream is repositionedso as to be ready to input
+the next character in the file
+
+we can write single characters to a file opened via an ofstream using
+the member function put() which takes a single argument of type char. 
+out_stream.put('4');
+the value 4 is put to the ofstream
+
+c++ also include a putback() member function for ifstream. 
+in_stream.put_back(ch);
+we can putback any character we want to 
+
+
+4.5 Checking for the End of an Input file
+
+GNU incorporates an EOF flag and a eof() member function for input
+streams to test if this flag is set to True or False.
+
+when an ifstream is initally connected to a file, the EOF flag is set
+to False (even if the file is empty). However, if the ifstream
+in_stream is positioned at the end of a file, and the EOF flag is
+False, the statement in_stream.get(ch); will leave the variable ch in
+an unpredicatble state, and set the EOF flag to True. no attempt
+should be made to read from the file. 
+
+
+4.6 streams as arguments to functions
+
+streams can be arguments to functions, but must be reference parameters.
+
+
+4.7 input and output using << and >>
+
+data of types other than characters has to be converted to characters
+before it can be written to a file, and these character sequences have
+to be converted back again when they are output. 
+however, the >> and << operators do some conversion automatically
+when using these higher level facilites it is important o include at
+least one ' ' blank character or a '\n' newline character after each
+item of data written. 
+
+
+
+
